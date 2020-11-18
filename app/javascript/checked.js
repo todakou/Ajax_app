@@ -1,11 +1,14 @@
+const { loadCSPNonce } = require("@rails/ujs");
+
 function check(){
-  const post = document.querySelectorAll(".post");
-  posts.forEach(function(post){
+  const posts = document.querySelectorAll(".post");
+  posts.forEach(function (post) {
     if (post.getAttribute("date-load") != null){
       return null;
     }
+    post.setAttribute("date-load","true");
     post.addEventListener("click", () => {
-      const postsId = post.getAttribute("date-id");
+      const postId = post.getAttribute("date-id");
       const XHR = new XMLHttpRequest();
       XHR.open("GET", `/posts/${postId}`, true);
       XHR.responseType = "json";
@@ -17,9 +20,9 @@ function check(){
         }
         const item = XHR.response.post;
         if (item.checked === true) {
-          post.setAttribute("date-check","true");
-        }else if (item.checked ===false) {
-          post.removeAttribute("date-check");
+          post.setAttribute("data-check","true");
+        }else if (item.checked === false) {
+          post.removeAttribute("data-check");
         }
       };
     });
