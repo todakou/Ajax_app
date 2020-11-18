@@ -16,10 +16,10 @@ class PostsController < ApplicationController
     if post.checked
       post.update(checked: false)
     else
-      post.update(checked: true)
+      post.uodate(checked: true)
     end
 
-    item = Post.find(params[:id])
+    item = Post.find(params [:id])
     render json: { post: item }
   end
 end
