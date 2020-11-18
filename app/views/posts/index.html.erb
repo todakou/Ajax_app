@@ -5,7 +5,7 @@ jax App<h1></h1>
   <% end %>
 
 <% @posts.each do |post| %>
-  <div class="post">
+  <div class="post" date-id=<%= post.id %> date-check=<%= post.checked %>>
     <div class="post-date">
       投稿日時：<%= post.created_at %>
     </div>
