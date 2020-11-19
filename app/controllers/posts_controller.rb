@@ -7,8 +7,8 @@ class PostsController < ApplicationController
  
 
   def create
-    Post.create(content: params[:content])
-    reddirect_to action: :index
+    post = Post.create(content: params[:content], checked: false)
+    render json:{ post: post }
   end
 
   def checked
@@ -16,10 +16,10 @@ class PostsController < ApplicationController
     if post.checked
       post.update(checked: false)
     else
-      post.uodate(checked: true)
+      post.update(checked: true)
     end
 
-    item = Post.find(params [:id])
+    item = Post.find(params[:id])
     render json: { post: item }
   end
 end
